@@ -1,0 +1,348 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* CHRONO */
+
+
+@keyframes pulse_thickness {
+  0% { transform: scale(.93); }
+  30% { transform: scale(.93); }
+  40% { transform: scale(.98); }
+  50% { transform: scale(.93); }
+  60% { transform: scale(.93); }
+  70% { transform: scale(.95); }
+  80% { transform: scale(.93); }
+  100% { transform: scale(.93); }
+}
+
+.pulse {
+  animation-name: pulse_thickness;
+  animation-duration: 1000ms;
+  transform-origin:50% 50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+.donut-size {
+  font-size: 9em;
+}
+
+.pie-wrapper {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  margin: 0px auto;
+}
+
+.pie-wrapper::before{
+  content: '';
+  background: #ECF0F1;
+  position: absolute;
+  top:0;right: 0;bottom: 0;left: 0;
+
+  border-radius: 50%;
+
+  z-index: 1;
+  transform: scale(.93);
+
+  box-shadow: 0 0 .025em rgba(0,0,0,.3);
+
+  animation-name: pulse_thickness;
+  animation-duration: 7000ms;
+  transform-origin:50% 50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+.pie-wrapper .pie {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 1em, 1em, 0.5em);
+}
+
+.pie-wrapper .half-circle {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 90%;
+  height: 90%;
+  border: 0.05em solid #FF4814; /* #1abc9c; */
+  border-radius: 50%;
+  clip: rect(0em, 0.5em, 1em, 0em);
+  transition: .5s all ease-in-out;
+}
+
+.pie-wrapper .right-side {
+  transform: rotate(0deg);
+}
+
+.pie-wrapper .label {
+  position: absolute;
+  top: 0.52em;
+  right: 0.4em;
+  bottom: 0.4em;
+  left: 0.4em;
+  display: block;
+  background: none;
+  border-radius: 50%;
+  color: #7F8C8D;
+  font-size: 0.25em;
+  line-height: 2.6em;
+  text-align: center;
+  cursor: default;
+  z-index: 2;
+  padding-left: 0!important;
+  padding-right: .07em!important;
+  padding-bottom: 0!important;
+  padding-top: .15em;
+}
+
+.pie-wrapper .label .time {
+  font-size: .73em!important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+}
+.pie-wrapper .label .btn {
+  font-size: .58em!important;
+  position: relative;
+  bottom: 3em;
+}
+
+.pie-wrapper .smaller {
+  padding-bottom: 20px;
+  color: #BDC3C7;
+  font-size: .45em;
+  vertical-align: super;
+}
+
+.pie-wrapper .shadow {
+  width: 90%;
+  height: 90%;
+  border: 0.05em solid #BDC3C7;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.btn-pause{
+  width: .3em;
+  height: .3em;
+  border-radius: 50%!important;
+  background: none!important;
+
+  position: relative;
+  bottom: 1.1em;
+  left: 1.1em;
+
+  float: right;
+}
+.btn-pause button{
+  display: inline-block;
+  height: 1.45em;
+  width: 1.45em;
+
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+
+  font-size: .25em;
+  color: #BDC3C7;
+
+  background: transparent;
+}
+
+.btn_menu_front{
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%!important;
+  background: none!important;
+
+  position: relative;
+  bottom: 6em;
+  left: 2.8em;
+
+  padding: 0 0 .2em 0;
+
+  font-size: .25em;
+  color: #BDC3C7;
+
+  z-index: 9999999999;
+
+  float: right;
+}
+
+.btn_menu_front:hover + #root2{
+  background: red!important;
+}
+
+.list-pause {
+  clear: both;
+  text-align: center;
+  font-size: .1em;
+  margin: 0!important;
+
+  background: rgb(252, 252, 252);
+  box-shadow: 0 0 .3em rgba(0,0,0,.5) inset;
+
+  position: relative;
+  bottom: 2em;
+  right: 2.5em;
+
+  height: 0px;
+  width: 150%;
+  overflow-y: hidden;
+  transition: .3s height ease-in, 1s overflow-y ease, .5s padding ease;
+  /* transition: 1s overflow-y ease; */
+}
+
+.list-pause button{
+  margin-bottom: .7em;
+}
+
+html{
+  font-size: 1rem;
+}
+
+#root2{
+  width: 800px;
+  height: 700px;
+
+  background: #ECF0F1;
+  box-shadow: 0 0 5px rgba(0,0,0,.3);
+
+  position: fixed;
+  top: 20%;right: -100%;
+
+
+
+  transition: .2s all ease-in-out;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  padding-top: 10px;
+}
+
+
+
+
+div#timer{
+  display: inline-block;
+  position: fixed;
+  top: 0;bottom: 85%;left: 40%;right: 40%;
+
+  padding-top: 10px;
+
+  /* background: rgba(0,0,0,.5); */
+
+  text-align: center;
+  color: #fff !important;
+
+  opacity: .09;
+  cursor: pointer;
+
+  /* box-shadow: 0px 0px 20px rgba(255,255,255,1); */
+  /* border-radius: 0 0 50px 50px; */
+
+  z-index: 999999999;
+
+  transition: .5s all ease;
+}
+
+div#timer:hover{
+  opacity: 1;
+}
+
+div#timer h5{
+  color: #fff;
+}
+
+div#timer p{
+  color: #fff;
+}
+
+span.close-pause-details{
+  opacity: 0;
+}
+
+div.close-pause-details{
+  color: black;
+  font-size: 2em;
+
+  opacity: 0;
+
+  /* position: relative;
+  left: 43%; */
+}
+
+div.close-pause-details span{
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px rgba(255,255,255,1);
+}
+
+div.pause-list{
+  position: fixed;
+  top: 20%;bottom: 55%;left: 40%;right: 40%;
+
+  background: #fff;
+  padding: 5px 10px;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  z-index: 99999999;
+
+  transition: .5s all ease;
+}
+
+div.pause-list li {
+  margin-top: 10px;
+  list-style-type: none;
+}
+
+div.pause-list.hide{
+  opacity: .05;
+  transform: rotateX(90deg);
+
+  text-align: center;
+
+  transition: .5s all ease;
+}
+
+div.pause-list.show{
+  opacity: 1;
+  transform: rotateX(0deg);
+
+  box-shadow: 0px 0px 20px rgba(0,0,0,.3);
+
+  text-align: center;
+
+  transition: .5s all ease;
+}
+
+
+.btn-actif {
+  background: #0f0!important;
+}
+
+.btn-stop {
+  background: #f00!important;
+}
+
+
+/* FIN CHRONO */

@@ -1,0 +1,61 @@
+{
+  "name": "horodator_app_final",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "active-win": "^6.0.0",
+    "axios": "^0.19.1",
+    "connectivity": "^1.0.2",
+    "getmac": "^5.1.0",
+    "ip": "^1.1.5",
+    "jquery": "^3.4.1",
+    "js-base64": "^2.5.1",
+    "cross-env": "^7.0.0",
+    "electron-is-dev": "^1.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.1"
+  },
+  "description": "Desktop application who hook all pc activities",
+  "author": "Itokiana",
+  "build": {
+    "appId": "com.physalis-sbo.horodator"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder -lw",
+    "release": "yarn react-build && electron-builder --publish=always",
+    "build": "yarn react-build && yarn electron-build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "electron": "^7.1.11",
+    "electron-builder": "^22.3.2",
+    "wait-on": "^4.0.0"
+  }
+}
