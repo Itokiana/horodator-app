@@ -18,7 +18,7 @@ module.exports.inactivity = (mainWindow) => {
 
       mainWindow.webContents.executeJavaScript('localStorage.getItem("mousemove_event")').then((mouseMoved) => {
 
-        console.log("HAHAHAHA", mouseMoved)
+        console.log("HAHAHAHA", JSON.parse(mouseMoved))
 
         if(mouseMoved !== null){
           mouseMoved = JSON.parse(mouseMoved);

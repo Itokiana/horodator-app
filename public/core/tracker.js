@@ -32,8 +32,10 @@ module.exports.hooking = (mainWindow) => {
       body += data
       let k = JSON.parse(body)
 
+      console.log("HEHEHEHE => " + body)
+
       if(k.type === "mousemove"){
-        mainWindow.webContents.executeJavaScript(`localStorage.setItem("mousemove_event", '${ JSON.stringify(body) }')`)
+        mainWindow.webContents.executeJavaScript(`localStorage.setItem("mousemove_event", '${ body }')`)
       }
       if(k.type === "keydown"){
         mainWindow.webContents.executeJavaScript(`localStorage.setItem("inactivity_position", '${ JSON.stringify([]) }')`)
