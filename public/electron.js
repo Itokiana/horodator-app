@@ -13,12 +13,24 @@ let mainWindow;
 
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow = new BrowserWindow({ 
+    width: 700, 
+    height: 700,
+    icon: __dirname + '/index.png',
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true,
+      devTools: false
+    },
+  });
 
   mainWindow.loadURL(isDev? "http://localhost:3000": `file://${path.join(__dirname, "../build/index.html")}`);
 
   setInterval(() => {
-    mainWindow.webContents.executeJavaScript('sessionStorage.setItem("computer_infos", \'{ "ip": "'+ require('ip').address() +'", "mac": "'+ require('getmac').default() +'"  }\')')
+    try {
+      mainWindow.webContents.executeJavaScript('sessionStorage.setItem("computer_infos", \'{ "ip": "'+ require('ip').address() +'", "mac": "'+ require('getmac').default() +'"  }\')')
+    }
+    catch(error) {}
   }, 15000);
 
 
@@ -30,7 +42,7 @@ function createWindow() {
     title: 'ALERT HORODATOR',
     body: 'Veuillez activer HORODATOR SVP !!!\nSinon votre temps de travail risquerait de ne pas être comptabilisé 😉',
     silent: false,
-    icon: './index.png'
+    icon: __dirname + '/index.png'
   })
 
   alertInactivityNotification.on("click", () => {
@@ -46,8 +58,11 @@ function createWindow() {
     })
   }, 15000);
 
-  mainWindow.webContents.executeJavaScript('sessionStorage.setItem("computer_infos", \'{ "ip": "'+ require('ip').address() +'", "mac": "'+ require('getmac').default() +'"  }\')')
-  mainWindow.webContents.openDevTools();
+  try {
+    mainWindow.webContents.executeJavaScript('sessionStorage.setItem("computer_infos", \'{ "ip": "'+ require('ip').address() +'", "mac": "'+ require('getmac').default() +'"  }\')')
+  }
+  catch(error) {}
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => (mainWindow = null));
 }

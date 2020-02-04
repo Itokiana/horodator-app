@@ -1,5 +1,5 @@
 {
-  "name": "horodator_app_final",
+  "name": "horodator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,7 +23,10 @@
   "description": "Desktop application who hook all pc activities",
   "author": "Itokiana",
   "build": {
-    "appId": "com.physalis-sbo.horodator"
+    "appId": "com.physalis-sbo.horodator",
+    "win": {
+      "icon": "./build/index.png"
+    }
   },
   "main": "public/electron.js",
   "homepage": "./",
