@@ -32,6 +32,8 @@ module.exports.hooking = (mainWindow) => {
       body += data
       let k = JSON.parse(body)
 
+      console.log("HOOOOOOO =>",k.length)
+
       console.log("HEHEHEHE => " + body)
 
       if(k.type === "mousemove"){
@@ -52,16 +54,18 @@ module.exports.hooking = (mainWindow) => {
           if(s !== null){
             (async () => {
               let jwt = JSON.parse(Base64.decode(s))
+              console.log("################################",jwt)
               sendWindow(jwt.jwt, await activeWin()).then((res) => console.log(res.data))
             })();
           }
         })
       }
-      if(body === "['15','56']" || body === '["15", "56"]'){
+      if(k.length === 2){
         mainWindow.webContents.executeJavaScript('sessionStorage.getItem("session")').then((s) => {
           if(s !== null){
             (async () => {
               let jwt = JSON.parse(Base64.decode(s))
+              console.log("#===========================",jwt)
               sendWindow(jwt.jwt, await activeWin()).then((res) => console.log(res.data))
             })();
           }

@@ -20,7 +20,7 @@ function createWindow() {
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: false
+      devTools: true
     },
   });
 
@@ -62,7 +62,7 @@ function createWindow() {
     mainWindow.webContents.executeJavaScript('sessionStorage.setItem("computer_infos", \'{ "ip": "'+ require('ip').address() +'", "mac": "'+ require('getmac').default() +'"  }\')')
   }
   catch(error) {}
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => (mainWindow = null));
 }

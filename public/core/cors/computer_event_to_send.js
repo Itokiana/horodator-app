@@ -32,6 +32,7 @@ module.exports.sendInactivity = (jwt, data) => {
 }
 
 module.exports.sendWindow = (jwt, data) => {
+  console.log(jwt)
   return axios({
     headers: { 'Authorization': jwt },
     method: 'post',

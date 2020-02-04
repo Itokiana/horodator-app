@@ -124,6 +124,7 @@ class Dashboard extends Component{
       }).then((res) => {
         sessionStorage.setItem("owner", JSON.stringify(res.data))
         sessionStorage.removeItem("session")
+        sessionStorage.removeItem("state")
         this.setState({ connected: false })
       })
     } else {
